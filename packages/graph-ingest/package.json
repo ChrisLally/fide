@@ -1,0 +1,32 @@
+{
+  "name": "@chris-test/graph-ingest",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "build:sameas-input": "pnpm run build && node dist/scripts/build-sameas-input.js",
+    "mock:broadcast": "pnpm run build && node dist/scripts/mock-broadcast.js"
+  },
+  "dependencies": {
+    "@chris-test/db": "workspace:*",
+    "@chris-test/fcp": "workspace:*",
+    "@chris-test/graph": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "typescript": "^5.8.3"
+  }
+}
