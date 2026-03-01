@@ -76,8 +76,8 @@ Suggested Cloudflare build config:
 
 `deploy:cf` injects:
 
-- `COMMIT_SHA` from `git rev-parse HEAD`
-- `API_VERSION` from `fide-api/v*` tag on `HEAD` (required; deploy fails if missing)
+- `COMMIT_SHA` from `WORKERS_CI_COMMIT_SHA` (or `git rev-parse HEAD` if absent)
+- `API_VERSION` from latest commit message containing `fide-api/v*` (or tag on `HEAD` if present); deploy fails if missing
 - `CF_VERSION_METADATA` from Cloudflare `version_metadata` binding
 
 If deploying manually, set secrets/vars in Cloudflare first:
