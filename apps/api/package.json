@@ -1,0 +1,35 @@
+{
+  "name": "api",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "dev:tunnel": "sh -c 'set -a; [ -f ../../.env ] && . ../../.env; [ -f ../../.env.local ] && . ../../.env.local; set +a; if [ -z \"$CLOUDFLARED_TUNNEL_TOKEN_API\" ]; then echo \"Missing CLOUDFLARED_TUNNEL_TOKEN_API\"; exit 1; fi; cloudflared tunnel run --token \"$CLOUDFLARED_TUNNEL_TOKEN_API\"'",
+    "dev:cf": "pnpm exec wrangler dev",
+    "build": "cd ../.. && pnpm --filter @chris-test/fcp build && pnpm --filter @chris-test/db build && pnpm --filter @chris-test/graph build && pnpm --filter @chris-test/graph-ingest build && pnpm --filter api run build:local",
+    "build:api:prod": "cd ../.. && pnpm build:api:prod",
+    "build:local": "tsc",
+    "openapi:export": "tsx scripts/export-openapi.ts",
+    "start": "node dist/index.js",
+    "deploy:cf": "pnpm exec wrangler deploy",
+    "deploy:cf:dry-run": "pnpm exec wrangler deploy --dry-run"
+  },
+  "dependencies": {
+    "@chris-test/db": "workspace:*",
+    "@chris-test/fcp": "workspace:*",
+    "@hono/node-server": "^1.19.9",
+    "@hono/zod-openapi": "^0.18.4",
+    "@supabase/supabase-js": "^2.95.3",
+    "dotenv": "^16.4.7",
+    "hono": "^4.11.9",
+    "jose": "^6.1.3",
+    "viem": "^2.21.48",
+    "zod": "^3.24.2",
+    "@chris-test/graph-ingest": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "tsx": "^4.7.1",
+    "typescript": "^5.8.3",
+    "wrangler": "^4.52.0"
+  }
+}
