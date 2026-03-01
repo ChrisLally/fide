@@ -1,0 +1,25 @@
+{
+  "protocolId": "FCP",
+  "protocolGeneration": "1",
+  "specDate": "2026-02-18",
+  "vectorSetVersion": "1",
+  "version": "v1",
+  "algorithm": "SHA-256",
+  "fingerprintRule": "first-36-hex-chars",
+  "cases": [
+    {
+      "id": "person-webresource-url",
+      "entityType": "Person",
+      "sourceEntityType": "NetworkResource",
+      "rawIdentifier": "https://x.com/alice",
+      "expectedFideId": "did:fide:0x10205fcbdc6d73bcfcd2c73eb4795c2f02f1d1c1"
+    },
+    {
+      "id": "textliteral-textliteral",
+      "entityType": "TextLiteral",
+      "sourceEntityType": "TextLiteral",
+      "rawIdentifier": "Alice Chen",
+      "expectedFideId": "did:fide:0xa0a0ba86d94f45ed925f5a31934b31c3d12c268a"
+    }
+  ]
+}
