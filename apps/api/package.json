@@ -10,8 +10,8 @@
     "build:local": "tsc",
     "openapi:export": "tsx scripts/export-openapi.ts",
     "start": "node dist/index.js",
-    "deploy:cf": "sh -c 'pnpm exec wrangler deploy --var COMMIT_SHA:$(git rev-parse HEAD)'",
-    "deploy:cf:dry-run": "sh -c 'pnpm exec wrangler deploy --dry-run --var COMMIT_SHA:$(git rev-parse HEAD)'"
+    "deploy:cf": "sh -c 'COMMIT_SHA=$(git rev-parse HEAD); API_VERSION=$(git tag --points-at HEAD | grep -E \"^fide-api/v\" | head -n1 | sed \"s#^fide-api/v##\"); if [ -z \"$API_VERSION\" ]; then echo \"Missing fide-api/v* tag at HEAD\"; exit 1; fi; pnpm exec wrangler deploy --var COMMIT_SHA:$COMMIT_SHA --var API_VERSION:$API_VERSION'",
+    "deploy:cf:dry-run": "sh -c 'COMMIT_SHA=$(git rev-parse HEAD); API_VERSION=$(git tag --points-at HEAD | grep -E \"^fide-api/v\" | head -n1 | sed \"s#^fide-api/v##\"); if [ -z \"$API_VERSION\" ]; then echo \"Missing fide-api/v* tag at HEAD\"; exit 1; fi; pnpm exec wrangler deploy --dry-run --var COMMIT_SHA:$COMMIT_SHA --var API_VERSION:$API_VERSION'"
   },
   "dependencies": {
     "@chris-test/db": "workspace:*",

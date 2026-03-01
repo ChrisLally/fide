@@ -8,7 +8,13 @@ export type AuthSubject = {
 
 export type AppBindings = {
   Bindings: {
-    COMMIT_SHA?: string;
+    COMMIT_SHA: string;
+    API_VERSION: string;
+    CF_VERSION_METADATA: {
+      id: string;
+      tag: string;
+      timestamp: string;
+    };
   };
   Variables: {
     authSubject?: AuthSubject;

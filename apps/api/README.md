@@ -74,7 +74,11 @@ Suggested Cloudflare build config:
 - Deploy command: `pnpm --filter api run deploy:cf`
 - Watch paths: `apps/api/**`
 
-`deploy:cf` injects `COMMIT_SHA` automatically from `git rev-parse HEAD`.
+`deploy:cf` injects:
+
+- `COMMIT_SHA` from `git rev-parse HEAD`
+- `API_VERSION` from `fide-api/v*` tag on `HEAD` (required; deploy fails if missing)
+- `CF_VERSION_METADATA` from Cloudflare `version_metadata` binding
 
 If deploying manually, set secrets/vars in Cloudflare first:
 
@@ -90,12 +94,13 @@ wrangler deploy --var GRAPH_API_V1_ENABLED:true
 
 Provenance headers are included on responses:
 
-- `X-Fide-Commit`: short deployed commit SHA
+- `X-Fide-Api-Version`: API version derived from `fide-api/v*`
 - `X-Fide-Source`: commit link in `https://github.com/ChrisLally/fide/commit/<sha>`
+- `X-Cloudflare-Version`: deployed Cloudflare Worker version id
 
 Top-level health endpoint:
 
-- `GET /health` returns `status`, `commit`, `source`, `timestamp`
+- `GET /health` returns `status`, `apiVersion`, `source`, `cloudflareVersion`, `timestamp`
 
 
 ## Environment

@@ -51,10 +51,12 @@ export function createApp() {
   app.use('*', async (c, next) => {
     await next()
 
-    const fullCommit = c.env.COMMIT_SHA ?? 'unknown'
-    const shortCommit = fullCommit === 'unknown' ? fullCommit : fullCommit.slice(0, 7)
-    c.header('X-Fide-Commit', shortCommit)
+    const fullCommit = c.env.COMMIT_SHA
+    const apiVersion = c.env.API_VERSION
+    const cfVersion = c.env.CF_VERSION_METADATA.id
+    c.header('X-Fide-Api-Version', apiVersion)
     c.header('X-Fide-Source', `https://github.com/ChrisLally/fide/commit/${fullCommit}`)
+    c.header('X-Cloudflare-Version', cfVersion)
   })
 
   // Root route
@@ -63,13 +65,15 @@ export function createApp() {
   })
 
   app.get('/health', (c) => {
-    const fullCommit = c.env.COMMIT_SHA ?? 'unknown'
-    const shortCommit = fullCommit === 'unknown' ? fullCommit : fullCommit.slice(0, 7)
+    const fullCommit = c.env.COMMIT_SHA
+    const apiVersion = c.env.API_VERSION
+    const cfVersion = c.env.CF_VERSION_METADATA.id
 
     return c.json({
       status: 'ok',
-      commit: shortCommit,
+      apiVersion,
       source: `https://github.com/ChrisLally/fide/commit/${fullCommit}`,
+      cloudflareVersion: cfVersion,
       timestamp: new Date().toISOString(),
     })
   })
