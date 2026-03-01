@@ -88,5 +88,4 @@ Copy and edit:
 cp .env.example .env
 ```
 
-
 `DATABASE_URL` is not read from `apps/api/.env`; DB configuration is provided by `@chris-test/db` via `packages/db/.env`.
