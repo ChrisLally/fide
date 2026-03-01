@@ -68,6 +68,14 @@ Production deploys are tag/sync driven:
 - Sync assembles/pushes to `fide/fide`
 - Cloudflare Git integration deploys from `fide/fide` (watch paths)
 
+Suggested Cloudflare build config:
+
+- Build command: `pnpm --filter api run build`
+- Deploy command: `pnpm --filter api run deploy:cf`
+- Watch paths: `apps/api/**`
+
+`deploy:cf` injects `COMMIT_SHA` automatically from `git rev-parse HEAD`.
+
 If deploying manually, set secrets/vars in Cloudflare first:
 
 ```bash
@@ -77,8 +85,17 @@ wrangler secret put DATABASE_URL
 Optional feature flag:
 
 ```bash
-wrangler secret put GRAPH_API_V1_ENABLED
+wrangler deploy --var GRAPH_API_V1_ENABLED:true
 ```
+
+Provenance headers are included on responses:
+
+- `X-Fide-Commit`: short deployed commit SHA
+- `X-Fide-Source`: commit link in `https://github.com/ChrisLally/fide/commit/<sha>`
+
+Top-level health endpoint:
+
+- `GET /health` returns `status`, `commit`, `source`, `timestamp`
 
 
 ## Environment

@@ -1,5 +1,6 @@
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { cors } from 'hono/cors'
+import type { AppBindings } from './middleware/context.js'
 import gateway from './routes/gateway/index.js'
 import graph from './routes/graph/index.js'
 import workspace from './routes/workspace/index.js'
@@ -40,16 +41,37 @@ export const openapiDocument = {
 }
 
 export function createApp() {
-  const app = new OpenAPIHono()
+  const app = new OpenAPIHono<AppBindings>()
 
   app.use('*', cors({
     origin: 'http://localhost:3000',
     allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   }))
 
+  app.use('*', async (c, next) => {
+    await next()
+
+    const fullCommit = c.env.COMMIT_SHA ?? 'unknown'
+    const shortCommit = fullCommit === 'unknown' ? fullCommit : fullCommit.slice(0, 7)
+    c.header('X-Fide-Commit', shortCommit)
+    c.header('X-Fide-Source', `https://github.com/ChrisLally/fide/commit/${fullCommit}`)
+  })
+
   // Root route
   app.get('/', (c) => {
     return c.text('Fide API')
+  })
+
+  app.get('/health', (c) => {
+    const fullCommit = c.env.COMMIT_SHA ?? 'unknown'
+    const shortCommit = fullCommit === 'unknown' ? fullCommit : fullCommit.slice(0, 7)
+
+    return c.json({
+      status: 'ok',
+      commit: shortCommit,
+      source: `https://github.com/ChrisLally/fide/commit/${fullCommit}`,
+      timestamp: new Date().toISOString(),
+    })
   })
 
   // Mount platform service routes.

@@ -10,8 +10,8 @@
     "build:local": "tsc",
     "openapi:export": "tsx scripts/export-openapi.ts",
     "start": "node dist/index.js",
-    "deploy:cf": "pnpm exec wrangler deploy",
-    "deploy:cf:dry-run": "pnpm exec wrangler deploy --dry-run"
+    "deploy:cf": "sh -c 'pnpm exec wrangler deploy --var COMMIT_SHA:$(git rev-parse HEAD)'",
+    "deploy:cf:dry-run": "sh -c 'pnpm exec wrangler deploy --dry-run --var COMMIT_SHA:$(git rev-parse HEAD)'"
   },
   "dependencies": {
     "@chris-test/db": "workspace:*",

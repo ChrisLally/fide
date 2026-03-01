@@ -5,3 +5,4 @@ compatibility_flags = ["nodejs_compat"]
 
 [vars]
 GRAPH_API_V1_ENABLED = "true"
+COMMIT_SHA = "unknown"

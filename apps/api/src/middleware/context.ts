@@ -7,6 +7,9 @@ export type AuthSubject = {
 };
 
 export type AppBindings = {
+  Bindings: {
+    COMMIT_SHA?: string;
+  };
   Variables: {
     authSubject?: AuthSubject;
   };
