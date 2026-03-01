@@ -36,20 +36,25 @@ From repo root:
 pnpm run build:api:prod
 ```
 
+## OpenAPI Contract
+
+Export the API contract from `apps/api` into shared contracts:
+
+```bash
+pnpm --filter api run openapi:export
+```
+
+Generated file:
+
+- `packages/contracts/openapi.json`
+
 ## Entrypoints
 
 - Local Node runtime: `src/index.ts`
 - Vercel runtime: `api/[...route].ts`
 - Cloudflare Worker runtime: `src/worker.ts`
 
-## Cloudflare Deploy
-
-From `apps/api`:
-
-```bash
-pnpm install
-pnpm run deploy:cf
-```
+## Cloudflare
 
 For local Worker dev:
 
@@ -57,7 +62,13 @@ For local Worker dev:
 pnpm run dev:cf
 ```
 
-Set secrets/vars in Cloudflare before deploy:
+Production deploys are tag/sync driven:
+
+- Create/push `fide-api/v*` from `fide-internal`
+- Sync assembles/pushes to `fide/fide`
+- Cloudflare Git integration deploys from `fide/fide` (watch paths)
+
+If deploying manually, set secrets/vars in Cloudflare first:
 
 ```bash
 wrangler secret put DATABASE_URL
