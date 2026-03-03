@@ -13,6 +13,8 @@ import { sha256Hex } from "../utils.js";
  * - Result is returned as lowercase hex string
  *
  * @param inputs Array of statement inputs.
+ * @paramDefault inputs [{ subject: { rawIdentifier: "https://x.com/alice", entityType: "Person", sourceType: "NetworkResource" }, predicate: { rawIdentifier: "https://schema.org/knows", entityType: "Concept", sourceType: "NetworkResource" }, object: { rawIdentifier: "https://x.com/bob", entityType: "Person", sourceType: "NetworkResource" } }]
+ * @paramDefault options { normalizeRawIdentifier: true }
  * @returns Statements, statement IDs (input order), and deterministic root hash
  * @throws Error if one or more built statements are missing `statementFideId`
  */
@@ -37,4 +39,20 @@ export async function buildStatementsWithRoot(
     statementFideIds,
     root,
   };
+}
+
+/**
+ * Backward-compatible alias for `buildStatementsWithRoot`.
+ *
+ * @param inputs Array of statement inputs.
+ * @param options Statement build options.
+ * @paramDefault inputs [{ subject: { rawIdentifier: "https://x.com/alice", entityType: "Person", sourceType: "NetworkResource" }, predicate: { rawIdentifier: "https://schema.org/knows", entityType: "Concept", sourceType: "NetworkResource" }, object: { rawIdentifier: "https://x.com/bob", entityType: "Person", sourceType: "NetworkResource" } }]
+ * @paramDefault options { normalizeRawIdentifier: true }
+ * @returns Statements, statement IDs (input order), and deterministic root hash.
+ */
+export async function buildCanonicalStatementSet(
+  inputs: StatementInput[],
+  options?: StatementBuildOptions,
+): Promise<StatementBatchWithRoot> {
+  return buildStatementsWithRoot(inputs, options);
 }

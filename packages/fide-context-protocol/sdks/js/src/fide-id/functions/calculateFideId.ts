@@ -21,6 +21,7 @@ export type { FideEntityType };
  * @paramDefault entityType Person
  * @paramDefault sourceEntityType NetworkResource
  * @paramDefault rawIdentifier https://x.com/alice
+ * @paramDefault options { normalizeRawIdentifier: false }
  * @returns Promise resolving to the calculated Fide ID with format `did:fide:0x{typeCode}{sourceCode}{fingerprint}`
  * @throws TypeError if rawIdentifier is not a string
  * @throws Error if entityType or sourceEntityType are invalid

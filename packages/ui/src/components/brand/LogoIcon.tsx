@@ -5,6 +5,8 @@ export interface LogoIconProps extends React.ComponentProps<'img'> {
   size?: number
 }
 
+const logoIconSrc = new URL('./icon.svg', import.meta.url).toString()
+
 export const LogoIcon = ({
   size = 28,
   className,
@@ -13,7 +15,7 @@ export const LogoIcon = ({
 }: LogoIconProps) => {
   return (
     <img
-      src="/images/icon.svg"
+      src={logoIconSrc}
       alt={alt}
       width={size}
       height={size}

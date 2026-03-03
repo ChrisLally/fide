@@ -2,7 +2,7 @@
  * FCP SDK - Statement Module (protocol primitives)
  */
 export { buildStatement } from "./functions/buildStatement.js";
-export { buildStatementsWithRoot, buildStatementsWithRoot as buildCanonicalStatementSet } from "./functions/buildStatementsWithRoot.js";
+export { buildStatementsWithRoot, buildCanonicalStatementSet } from "./functions/buildStatementsWithRoot.js";
 export {
   calculateCanonicalStatementSetRoot,
   calculateStatementSetRoot,

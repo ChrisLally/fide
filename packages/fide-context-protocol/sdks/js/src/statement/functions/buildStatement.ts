@@ -15,6 +15,8 @@ import type { Statement, StatementBuildOptions, StatementInput } from "../types.
  * Predicates must be canonical full URLs.
  *
  * @param input - Statement input with subject, predicate, and object
+ * @paramDefault input { subject: { rawIdentifier: "https://x.com/alice", entityType: "Person", sourceType: "NetworkResource" }, predicate: { rawIdentifier: "https://schema.org/knows", entityType: "Concept", sourceType: "NetworkResource" }, object: { rawIdentifier: "https://x.com/bob", entityType: "Person", sourceType: "NetworkResource" } }
+ * @paramDefault options { normalizeRawIdentifier: true }
  * @returns Complete statement object
  * @throws Error if statement input policy fails, Fide ID format/policy checks fail, or statement ID derivation fails
  */

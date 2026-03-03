@@ -9,6 +9,7 @@ import { assertFideId } from "./assertFideId.js";
  * converting type/source codes to their corresponding entity type names.
  *
  * @param fideId The Fide ID reference (format: did:fide:0x...)
+ * @paramDefault fideId did:fide:0x10205fcbdc6d73bcfcd2c73eb4795c2f02f1d1c1
  * @returns Parsed Fide ID components. `entityType` and `sourceType` are resolved via `FIDE_CHAR_TO_ENTITY_TYPE`.
  * @throws Error if invalid Fide ID format or if type characters do not map to known entity types
  */

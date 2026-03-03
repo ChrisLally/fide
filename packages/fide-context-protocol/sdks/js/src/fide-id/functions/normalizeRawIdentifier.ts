@@ -8,6 +8,18 @@ export type NormalizeRawIdentifierOptions = {
   skipUrlNormalization?: boolean;
 };
 
+/**
+ * Normalize a raw identifier for general entity usage.
+ *
+ * For http(s) URLs this canonicalizes protocol/host casing and removes default ports.
+ * Non-URL values are returned unchanged.
+ *
+ * @param rawIdentifier Raw identifier value.
+ * @param options Normalization options.
+ * @paramDefault rawIdentifier https://x.com/Alice
+ * @paramDefault options { skipUrlNormalization: false }
+ * @returns Normalized raw identifier.
+ */
 export function normalizeRawIdentifier(rawIdentifier: string, options?: NormalizeRawIdentifierOptions): string {
   const skipUrlNormalization = options?.skipUrlNormalization === true;
   if (skipUrlNormalization) {
@@ -41,6 +53,18 @@ export function normalizeRawIdentifier(rawIdentifier: string, options?: Normaliz
   return url.toString();
 }
 
+/**
+ * Normalize and validate a predicate raw identifier.
+ *
+ * Predicates must be canonical absolute `https` URLs without userinfo.
+ *
+ * @param rawIdentifier Predicate raw identifier.
+ * @param options Normalization options.
+ * @paramDefault rawIdentifier https://schema.org/name
+ * @paramDefault options { skipUrlNormalization: false }
+ * @returns Canonical predicate URL string.
+ * @throws Error if rawIdentifier is not a valid canonical predicate URL.
+ */
 export function normalizePredicateRawIdentifier(
   rawIdentifier: string,
   options?: NormalizeRawIdentifierOptions,
