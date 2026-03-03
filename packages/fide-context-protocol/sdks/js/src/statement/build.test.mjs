@@ -1,6 +1,5 @@
 import {
-    buildStatement,
-    buildStatementsWithRoot
+    buildStatement
 } from "../../dist/index.js";
 
 console.log("📝 Testing Statement Building Helpers\n");
@@ -40,42 +39,8 @@ try {
     console.error("  ❌ Error:", error.message);
 }
 
-// Test 2: Build statement batch with root
-console.log("\n2. Testing buildStatementsWithRoot...");
-checks += 1;
-try {
-    const { statements, statementFideIds, root } = await buildStatementsWithRoot([
-        {
-            subject: { rawIdentifier: 'https://x.com/alice', entityType: 'Person', sourceType: 'NetworkResource' },
-            predicate: { rawIdentifier: 'https://schema.org/name', entityType: 'Concept', sourceType: 'NetworkResource' },
-            object: { rawIdentifier: 'Alice', entityType: 'TextLiteral', sourceType: 'TextLiteral' }
-        },
-        {
-            subject: { rawIdentifier: 'https://x.com/bob', entityType: 'Person', sourceType: 'NetworkResource' },
-            predicate: { rawIdentifier: 'https://schema.org/worksFor', entityType: 'Concept', sourceType: 'NetworkResource' },
-            object: { rawIdentifier: 'https://www.acme.com', entityType: 'Organization', sourceType: 'NetworkResource' }
-        }
-    ]);
-
-    if (statements.length !== 2) {
-        failures += 1;
-        console.error("  ❌ Expected 2 statements, got", statements.length);
-    } else if (!statements[0].statementFideId || !statements[1].statementFideId) {
-        failures += 1;
-        console.error("  ❌ Missing statement Fide IDs");
-    } else if (statementFideIds.length !== 2 || !root) {
-        failures += 1;
-        console.error("  ❌ Missing statement batch IDs or root");
-    } else {
-        console.log("  ✅ Created batch of", statements.length, "statements with root");
-    }
-} catch (error) {
-    failures += 1;
-    console.error("  ❌ Error:", error.message);
-}
-
-// Test 3: Reject Person+Statement (source code 00 forbidden for non-Statement entities)
-console.log("\n3. Testing rejection of Person+Statement...");
+// Test 2: Reject Person+Statement (source code 00 forbidden for non-Statement entities)
+console.log("\n2. Testing rejection of Person+Statement...");
 checks += 1;
 try {
     await buildStatement({
@@ -98,8 +63,8 @@ try {
     }
 }
 
-// Test 4: Error when subject/object are malformed (missing entityType/sourceType)
-console.log("\n4. Testing error when subject is malformed...");
+// Test 3: Error when subject/object are malformed (missing entityType/sourceType)
+console.log("\n3. Testing error when subject is malformed...");
 checks += 1;
 try {
     await buildStatement({
@@ -118,8 +83,8 @@ try {
     }
 }
 
-// Test 5: Reject predicate shorthand (must be canonical URL)
-console.log("\n5. Testing rejection of predicate shorthand...");
+// Test 4: Reject predicate shorthand (must be canonical URL)
+console.log("\n4. Testing rejection of predicate shorthand...");
 checks += 1;
 try {
     await buildStatement({
@@ -138,8 +103,8 @@ try {
     }
 }
 
-// Test 6: Do not normalize predicate by default
-console.log("\n6. Testing predicate URL behavior without normalization...");
+// Test 5: Do not normalize predicate by default
+console.log("\n5. Testing predicate URL behavior without normalization...");
 checks += 1;
 try {
     const statement = await buildStatement({
@@ -159,8 +124,8 @@ try {
     console.error("  ❌ Error:", error.message);
 }
 
-// Test 7: Reject non-https predicate URL
-console.log("\n7. Testing rejection of non-https predicate URL...");
+// Test 6: Reject non-https predicate URL
+console.log("\n6. Testing rejection of non-https predicate URL...");
 checks += 1;
 try {
     await buildStatement({
@@ -179,8 +144,8 @@ try {
     }
 }
 
-// Test 8: Do not normalize subject/object by default
-console.log("\n8. Testing subject/object URL-like behavior without normalization...");
+// Test 7: Do not normalize subject/object by default
+console.log("\n7. Testing subject/object URL-like behavior without normalization...");
 checks += 1;
 try {
     const statement = await buildStatement({
@@ -203,8 +168,8 @@ try {
     console.error("  ❌ Error:", error.message);
 }
 
-// Test 9: Normalize URL-like values when requested
-console.log("\n9. Testing normalizeRawIdentifier behavior...");
+// Test 8: Normalize URL-like values when requested
+console.log("\n8. Testing normalizeRawIdentifier behavior...");
 checks += 1;
 try {
     const statement = await buildStatement({
@@ -232,8 +197,8 @@ try {
     console.error("  ❌ Error:", error.message);
 }
 
-// Test 10: Reject invalid predicate URL
-console.log("\n10. Testing rejection of invalid predicate URL...");
+// Test 9: Reject invalid predicate URL
+console.log("\n9. Testing rejection of invalid predicate URL...");
 checks += 1;
 try {
     await buildStatement({

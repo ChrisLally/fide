@@ -1,0 +1,41 @@
+---
+title: Fide Context Protocol
+description: The standard for graphing context into trusted World Models.
+---
+
+## What FCP Is
+
+- FCP is how humans and agents can build a shared, verifiable understanding of context across systems.
+- It defines deterministic identifiers and a portable statement model so context can move without losing meaning.
+- It is a protocol spec, not a product API, and is designed for independent multi-language implementations.
+
+## Problem It Solves
+
+- Context amnesia: important facts and decisions stay trapped in app-specific silos.
+- No shared structure: systems cannot safely merge or compare assertions from different sources.
+- No deterministic identity layer: equivalent entities cannot be resolved consistently across implementations.
+
+## Core Primitives
+
+- Identifiers: deterministic Fide ID format and normalization.
+- Statement Schema: subject-predicate-object model and constraints.
+- Vocabulary: protocol entity and type definitions.
+
+## In Scope
+
+- Identifier rules and determinism requirements.
+- Statement validity constraints and canonical behavior.
+- Conformance expectations for implementations.
+
+## Out of Scope
+
+- Product-specific indexing and query engines.
+- Deployment architecture and storage choices.
+- Trust policy, ranking strategy, and application UX behavior.
+
+## Read This Spec
+
+- Start with [Statement Schema](/docs/fcp/schema) for the core model.
+- Continue to [Identifiers](/docs/fcp/identifiers) for deterministic identity rules.
+- Review [Conformance](/docs/fcp/conformance).
+- Use [References](/docs/fcp/references) for external standards context.

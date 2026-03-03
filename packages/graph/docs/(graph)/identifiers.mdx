@@ -1,0 +1,35 @@
+---
+title: Identifiers
+description: Fide ID format, invariants, and normalization rules.
+---
+
+## Scope
+
+- Define the canonical Fide ID shape.
+- Define what is and is not part of identifier semantics.
+- Define cross-language compatibility constraints.
+
+## Fide ID Format
+
+- Prefix and namespace.
+- Segment layout and allowed character set.
+- Examples of valid and invalid identifiers.
+
+## Normalization Rules
+
+- Raw input normalization before hashing.
+- Predicate/raw identifier canonicalization expectations.
+- Rules for whitespace, casing, and URI handling.
+
+## Determinism and Compatibility
+
+- Inputs that MUST yield identical outputs across runtimes.
+- Required hashing and truncation behavior.
+- Test vectors and interoperability guidance.
+
+## Validation
+
+- Parser requirements.
+- Reject cases and error classification.
+- Backward compatibility expectations.
+

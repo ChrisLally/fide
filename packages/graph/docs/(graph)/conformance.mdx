@@ -1,0 +1,36 @@
+---
+title: Conformance
+description: Minimum requirements for FCP-compliant implementations.
+---
+
+## Conformance Model
+
+- Define implementation classes (parser, producer, validator, indexer).
+- Define what "FCP-compliant" means at minimum.
+- Define versioning and compatibility policy.
+
+## Mandatory Requirements (MUST)
+
+- Fide ID parsing and validation behavior.
+- Canonical statement construction and hashing behavior.
+- Required statement schema field constraints.
+- Deterministic handling of protocol entity types.
+
+## Recommended Requirements (SHOULD)
+
+- Preserve unknown predicates and entity types.
+- Provide stable error semantics for invalid input.
+- Publish interoperability test coverage.
+
+## Optional Behavior (MAY)
+
+- Product-specific indexing, trust scoring, and query APIs.
+- Additional storage models or transport mechanisms.
+- Extra implementation diagnostics and developer tooling.
+
+## Compliance Testing
+
+- Required test vectors.
+- Cross-language test parity expectations.
+- Guidance for self-certification and CI checks.
+

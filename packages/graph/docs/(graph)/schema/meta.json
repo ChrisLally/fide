@@ -1,0 +1,10 @@
+{
+  "title": "Schema",
+  "pages": [
+    "index",
+    "attributes",
+    "relationships",
+    "actions"
+  ]
+}
+

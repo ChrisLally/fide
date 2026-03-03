@@ -1,0 +1,41 @@
+{
+  "name": "@chris-test/graph",
+  "version": "0.0.0-alpha.7",
+  "license": "Apache-2.0",
+  "author": "Fide Holdings, Inc. (https://github.com/fide)",
+  "homepage": "https://fide.work/graph",
+  "keywords": [
+    "fide",
+    "graph"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChrisLally/fide.git"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "build:fixture": "tsx src/scripts/fixtures/build-fixture-scenario.ts",
+    "fixtures:check": "tsx src/scripts/fixtures/check-fixtures.ts",
+    "fixtures:update": "tsx src/scripts/fixtures/check-fixtures.ts --update"
+  },
+  "dependencies": {
+    "@chris-test/fcp": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "typescript": "^5.8.3"
+  }
+}

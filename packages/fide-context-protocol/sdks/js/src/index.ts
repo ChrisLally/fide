@@ -56,12 +56,9 @@ export type {
 
 export {
     buildStatement,
-    buildStatementsWithRoot,
-    buildCanonicalStatementSet,
     calculateCanonicalStatementSetRoot,
     calculateStatementSetRoot,
     type StatementInput,
     type Statement,
-    type CanonicalStatementSet,
-    type StatementBatchWithRoot
+    type CanonicalStatementSet
 } from "./statement/index.js";

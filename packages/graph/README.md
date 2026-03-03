@@ -1,22 +1,19 @@
-# @fide-work/graph
+# fide-graph
 
-Pure graph-layer utilities for Fide graph ingestion and projection logic.
+Fide Graph workspace.
 
-## Boundary Tags
+## Structure
 
-Use boundary tags at conversion seams so protocol and product logic are explicit:
+- `openapi/`: API contract artifacts
+- `docs/`: graph docs
+- `sdks/js/`: JavaScript SDK package (`@chris-test/graph`)
 
-- `@boundary <from> -> <to>`
-- `@consumes <input-shape>`
-- `@produces <output-shape>`
+## SDK Release
 
-Example:
+- Monorepo release tag: `graph/v<version>`
+- Standalone repo release tag: `grpah-v<version>`
+- From repo root: `pnpm run release:graph`
 
-```ts
-/**
- * Converts graph ingestion wire format into protocol-level FCP Statement.
- * @boundary graph -> fcp
- * @consumes GraphStatementWire
- * @produces Statement
- */
-```
+## License
+
+See `LICENSE`.

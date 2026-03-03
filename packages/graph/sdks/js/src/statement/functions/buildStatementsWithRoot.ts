@@ -1,6 +1,5 @@
-import type { FideId } from "../../fide-id/types.js";
-import { buildStatement } from "./buildStatement.js";
-import type { StatementBatchWithRoot, StatementBuildOptions, StatementInput } from "../types.js";
+import { buildStatement, type FideId, type StatementInput } from "@chris-test/fcp";
+import type { StatementBatchWithRoot, StatementBuildOptions } from "../types.js";
 import { sha256Hex } from "../utils.js";
 
 /**

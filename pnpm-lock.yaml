@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@chris-lally/cli':
-        specifier: link:/Users/chrislally/Desktop/chrislally/packages/lally-cli/packages/cli
-        version: link:../chrislally/packages/lally-cli/packages/cli
+        specifier: 0.1.0-alpha.47
+        version: 0.1.0-alpha.47
       fumadocs-ui:
         specifier: 16.6.8
         version: 16.6.8(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(fumadocs-core@16.6.8(@mdx-js/mdx@3.1.1)(@types/estree-jsx@1.0.5)(@types/hast@3.0.4)(@types/mdast@4.0.4)(@types/react@19.2.14)(lucide-react@0.575.0(react@19.2.4))(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(zod@4.3.6))(next@16.1.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(tailwindcss@4.2.1)
@@ -30,8 +30,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/db
       '@chris-test/fcp':
-        specifier: workspace:*
-        version: link:../../packages/fide-context-protocol/sdks/js
+        specifier: '*'
+        version: 0.0.1-alpha.9(viem@2.46.3(typescript@5.9.3)(zod@3.25.76))
       '@chris-test/graph-ingest':
         specifier: workspace:*
         version: link:../../packages/graph-ingest
@@ -79,8 +79,8 @@ importers:
         specifier: ^1.2.0
         version: 1.2.0(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@chris-test/fcp':
-        specifier: workspace:*
-        version: link:../../packages/fide-context-protocol/sdks/js
+        specifier: '*'
+        version: 0.0.1-alpha.9(viem@2.46.3(typescript@5.9.3)(zod@4.3.6))
       '@chris-test/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -250,8 +250,8 @@ importers:
   packages/cli:
     dependencies:
       '@chris-test/fcp':
-        specifier: ^0.0.1-alpha.4
-        version: 0.0.1-alpha.4(viem@2.46.3(typescript@5.9.3)(zod@4.3.6))
+        specifier: 0.0.1-alpha.9
+        version: 0.0.1-alpha.9(viem@2.46.3(typescript@5.9.3)(zod@4.3.6))
       rdflib:
         specifier: ^2.2.37
         version: 2.3.5
@@ -266,8 +266,8 @@ importers:
   packages/db:
     dependencies:
       '@chris-test/fcp':
-        specifier: workspace:*
-        version: link:../fide-context-protocol/sdks/js
+        specifier: '*'
+        version: 0.0.1-alpha.9(viem@2.46.3(typescript@5.9.3)(zod@4.3.6))
       dotenv:
         specifier: ^16.4.7
         version: 16.6.1
@@ -336,27 +336,30 @@ importers:
         specifier: ^2.21.48
         version: 2.46.3(typescript@5.9.3)(zod@4.3.6)
 
-  packages/graph:
-    dependencies:
-      '@chris-test/fcp':
-        specifier: ^0.0.1-alpha.4
-        version: 0.0.1-alpha.4(viem@2.46.3(typescript@5.9.3)(zod@4.3.6))
-    devDependencies:
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
-
   packages/graph-ingest:
     dependencies:
       '@chris-test/db':
         specifier: workspace:*
         version: link:../db
       '@chris-test/fcp':
-        specifier: workspace:*
-        version: link:../fide-context-protocol/sdks/js
+        specifier: '*'
+        version: 0.0.1-alpha.9(viem@2.46.3(typescript@5.9.3)(zod@4.3.6))
       '@chris-test/graph':
         specifier: workspace:*
-        version: link:../graph
+        version: link:../graph/sdks/js
+    devDependencies:
+      '@types/node':
+        specifier: ^20.11.17
+        version: 20.19.35
+      typescript:
+        specifier: ^5.8.3
+        version: 5.9.3
+
+  packages/graph/sdks/js:
+    dependencies:
+      '@chris-test/fcp':
+        specifier: '*'
+        version: 0.0.1-alpha.9(viem@2.46.3(typescript@5.9.3)(zod@4.3.6))
     devDependencies:
       '@types/node':
         specifier: ^20.11.17
@@ -653,8 +656,12 @@ packages:
   '@chevrotain/utils@11.1.2':
     resolution: {integrity: sha512-4mudFAQ6H+MqBTfqLmU7G1ZwRzCLfJEooL/fsF6rCX5eePMbGhoy5n4g+G4vlh2muDcsCTJtL+uKbOzWxs5LHA==}
 
-  '@chris-test/fcp@0.0.1-alpha.4':
-    resolution: {integrity: sha512-4siSa3+jVzXcfaDs9VPRvEfTvxkVGT110VCgn/vSad16tbQQKQsDsJV09+0/VUSfQs5oZChjHqyJDSZdQ0eAFg==}
+  '@chris-lally/cli@0.1.0-alpha.47':
+    resolution: {integrity: sha512-/z8q4p2ESxGG4lxUfJK8hrcukyV2N+7DqnvqaEPlPGQyjVzps2YGQrwDJqdZw9tlQzOqUw0zDAB+CNad18QvpQ==}
+    hasBin: true
+
+  '@chris-test/fcp@0.0.1-alpha.9':
+    resolution: {integrity: sha512-4gRdGTiNthHzlDcTM6sImJcBxm3duR8PCsp01nXiEdLnu4qu+TuJmtY8HboS4K03/1zZUMgDte2Ue3qW0DlfLA==}
     engines: {node: '>=20'}
     peerDependencies:
       viem: ^2.0.0
@@ -6416,7 +6423,13 @@ snapshots:
 
   '@chevrotain/utils@11.1.2': {}
 
-  '@chris-test/fcp@0.0.1-alpha.4(viem@2.46.3(typescript@5.9.3)(zod@4.3.6))':
+  '@chris-lally/cli@0.1.0-alpha.47': {}
+
+  '@chris-test/fcp@0.0.1-alpha.9(viem@2.46.3(typescript@5.9.3)(zod@3.25.76))':
+    optionalDependencies:
+      viem: 2.46.3(typescript@5.9.3)(zod@3.25.76)
+
+  '@chris-test/fcp@0.0.1-alpha.9(viem@2.46.3(typescript@5.9.3)(zod@4.3.6))':
     optionalDependencies:
       viem: 2.46.3(typescript@5.9.3)(zod@4.3.6)
 

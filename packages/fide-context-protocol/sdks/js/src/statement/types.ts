@@ -78,6 +78,3 @@ export interface CanonicalStatementSet {
   /** Deterministic SHA-256 hex hash of ordered statement Fide IDs. */
   root: string;
 }
-
-// Backward-compatible alias.
-export type StatementBatchWithRoot = CanonicalStatementSet;
