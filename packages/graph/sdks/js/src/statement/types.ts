@@ -1,10 +1,15 @@
-import type { CanonicalStatementSet, Statement, StatementInput } from "@chris-test/fcp";
+import type { FideId, Statement, StatementInput } from "@chris-test/fcp";
 
 export type {
   StatementInput,
   Statement,
-  CanonicalStatementSet,
 };
+
+export interface CanonicalStatementSet {
+  statements: Statement[];
+  statementFideIds: FideId[];
+  root: string;
+}
 
 export interface StatementBuildOptions {
   normalizeRawIdentifier?: boolean;
