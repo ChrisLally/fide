@@ -1,6 +1,6 @@
 {
   "name": "@chris-test/graph",
-  "version": "0.0.0-alpha.8",
+  "version": "0.0.0-alpha.9",
   "license": "Apache-2.0",
   "author": "Fide Holdings, Inc. (https://github.com/fide)",
   "homepage": "https://fide.work/graph",
@@ -27,6 +27,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc --noEmit",
+    "check-types": "tsc --noEmit",
     "build:fixture": "tsx src/scripts/fixtures/build-fixture-scenario.ts",
     "fixtures:check": "tsx src/scripts/fixtures/check-fixtures.ts",
     "fixtures:update": "tsx src/scripts/fixtures/check-fixtures.ts --update"
