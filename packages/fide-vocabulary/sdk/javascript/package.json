@@ -1,0 +1,55 @@
+{
+  "name": "@chris-test/fide-vocabulary",
+  "version": "0.0.0-alpha.4",
+  "description": "Fide Vocabulary SDK (v0)",
+  "license": "Apache-2.0",
+  "author": "Fide Holdings, Inc. (https://github.com/fide)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChrisLally/fide-vocabulary.git"
+  },
+  "homepage": "https://fide.work/fide-vocabulary",
+  "keywords": [
+    "fide",
+    "fide-vocabulary",
+    "entity-vocabulary",
+    "vocabulary"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./spec": {
+      "types": "./dist/spec/index.d.ts",
+      "default": "./dist/spec/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check-types": "tsc --noEmit",
+    "generate:sdk": "node ../../scripts/generate-sdk/spec-module.mjs",
+    "generate:docs": "node ../../scripts/generate-docs/sdk-reference.mjs",
+    "test": "pnpm run build && node scripts/test-runner.mjs",
+    "test:verbose": "pnpm run build && node scripts/test-runner.mjs --verbose"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "typescript": "^5.9.3"
+  }
+}
