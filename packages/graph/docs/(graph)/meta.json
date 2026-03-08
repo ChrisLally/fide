@@ -1,11 +1,8 @@
 {
-  "title": "FCP",
+  "title": "Start",
   "root": true,
   "pages": [
     "index",
-    "identifiers",
-    "schema",
-    "conformance",
-    "references"
+    "api/v1"
   ]
 }

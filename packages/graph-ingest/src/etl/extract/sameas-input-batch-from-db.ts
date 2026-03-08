@@ -1,9 +1,10 @@
 import { listSameAsEvaluationInputStatements } from "@chris-test/db";
-import { calculateStatementBatchRoot, type StatementWire } from "@chris-test/graph";
+import { calculateStatementSetRoot, type FideId } from "@chris-test/fcp";
+import type { GraphStatementWire } from "@chris-test/graph";
 
 export type SameAsEvaluationInputBatch = {
   statementCount: number;
-  statementWires: StatementWire[];
+  statementWires: GraphStatementWire[];
   statementFideIds: string[];
   root: string | null;
 };
@@ -12,17 +13,17 @@ export async function buildSameAsEvaluationInputBatchFromDb(): Promise<SameAsEva
   const rows = await listSameAsEvaluationInputStatements();
 
   const sorted = [...rows].sort((a, b) => a.statementFideId.localeCompare(b.statementFideId));
-  const statementWires: StatementWire[] = sorted.map((row) => ({
+  const statementWires: GraphStatementWire[] = sorted.map((row) => ({
     s: row.subjectFideId,
-    sr: row.subjectRawIdentifier,
+    sr: row.subjectReferenceIdentifier,
     p: row.predicateFideId,
-    pr: row.predicateRawIdentifier,
+    pr: row.predicateReferenceIdentifier,
     o: row.objectFideId,
-    or: row.objectRawIdentifier,
+    or: row.objectReferenceIdentifier,
   }));
-  const statementFideIds = sorted.map((row) => row.statementFideId);
+  const statementFideIds = sorted.map((row) => row.statementFideId as FideId);
 
-  const root = statementFideIds.length > 0 ? await calculateStatementBatchRoot(statementFideIds) : null;
+  const root = statementFideIds.length > 0 ? await calculateStatementSetRoot(statementFideIds) : null;
 
   return {
     statementCount: statementWires.length,

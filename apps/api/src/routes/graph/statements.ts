@@ -1,4 +1,4 @@
-import { listStatements } from '@chris-test/db';
+import { listStatements } from '@chris-test/graph-db';
 import { createRoute, OpenAPIHono, z } from '@hono/zod-openapi';
 import { requireGraphReadAuth } from '../../middleware/auth.js';
 import type { AppBindings } from '../../middleware/context.js';
@@ -29,12 +29,11 @@ const StatementsQuerySchema = z.object({
 const StatementItemSchema = z.object({
   statementFingerprint: z.string(),
   subjectFideId: z.string(),
-  subjectRawIdentifier: z.string(),
+  subjectReferenceIdentifier: z.string(),
   predicateFideId: z.string(),
-  // Kept for legacy clients that still render predicate labels.
-  predicateRawIdentifier: z.string(),
+  predicateReferenceIdentifier: z.string(),
   objectFideId: z.string(),
-  objectRawIdentifier: z.string(),
+  objectReferenceIdentifier: z.string(),
 }).openapi('GraphStatementItem');
 
 const StatementsResponseSchema = z.object({

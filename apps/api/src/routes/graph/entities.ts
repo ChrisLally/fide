@@ -1,4 +1,4 @@
-import { getEntityByFideId } from '@chris-test/db';
+import { getGraphEntityByFideId } from '@chris-test/graph-db';
 import { createRoute, OpenAPIHono, z } from '@hono/zod-openapi';
 import { requireGraphReadAuth } from '../../middleware/auth.js';
 import type { AppBindings } from '../../middleware/context.js';
@@ -18,17 +18,16 @@ const QuerySchema = z.object({
 const StatementSchema = z.object({
   statementFingerprint: z.string(),
   subjectFideId: z.string(),
-  subjectRawIdentifier: z.string(),
+  subjectReferenceIdentifier: z.string(),
   predicateFideId: z.string(),
-  // Kept for legacy clients that still render predicate labels.
-  predicateRawIdentifier: z.string(),
+  predicateReferenceIdentifier: z.string(),
   objectFideId: z.string(),
-  objectRawIdentifier: z.string(),
+  objectReferenceIdentifier: z.string(),
 });
 
 const EntityResponseSchema = z.object({
   entityFideId: z.string(),
-  primaryRawIdentifier: z.string(),
+  primaryReferenceIdentifier: z.string(),
   aliases: z.array(z.string()),
   statements: z.array(StatementSchema),
   nextCursor: z.string().nullable(),
@@ -89,7 +88,7 @@ app.openapi(createRoute({
     const { fideId } = c.req.valid('param');
     const query = c.req.valid('query');
 
-    const entity = await getEntityByFideId({
+    const entity = await getGraphEntityByFideId({
       fideId,
       statementsLimit: query.statementsLimit,
       statementsCursor: query.statementsCursor,

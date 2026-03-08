@@ -2,5 +2,5 @@ packages:
   - "apps/*"
   - "apps/graph/*"
   - "packages/*"
-  - "packages/*/sdks/*"
+  - "packages/*/sdk/*"
   - "packages/fide-context-protocol/*/*"

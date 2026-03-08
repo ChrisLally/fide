@@ -90,30 +90,30 @@
           "subjectFideId": {
             "type": "string"
           },
-          "subjectRawIdentifier": {
+          "subjectReferenceIdentifier": {
             "type": "string"
           },
           "predicateFideId": {
             "type": "string"
           },
-          "predicateRawIdentifier": {
+          "predicateReferenceIdentifier": {
             "type": "string"
           },
           "objectFideId": {
             "type": "string"
           },
-          "objectRawIdentifier": {
+          "objectReferenceIdentifier": {
             "type": "string"
           }
         },
         "required": [
           "statementFingerprint",
           "subjectFideId",
-          "subjectRawIdentifier",
+          "subjectReferenceIdentifier",
           "predicateFideId",
-          "predicateRawIdentifier",
+          "predicateReferenceIdentifier",
           "objectFideId",
-          "objectRawIdentifier"
+          "objectReferenceIdentifier"
         ]
       },
       "GraphStatementsResponse": {
@@ -154,7 +154,7 @@
           "entityFideId": {
             "type": "string"
           },
-          "primaryRawIdentifier": {
+          "primaryReferenceIdentifier": {
             "type": "string"
           },
           "aliases": {
@@ -174,30 +174,30 @@
                 "subjectFideId": {
                   "type": "string"
                 },
-                "subjectRawIdentifier": {
+                "subjectReferenceIdentifier": {
                   "type": "string"
                 },
                 "predicateFideId": {
                   "type": "string"
                 },
-                "predicateRawIdentifier": {
+                "predicateReferenceIdentifier": {
                   "type": "string"
                 },
                 "objectFideId": {
                   "type": "string"
                 },
-                "objectRawIdentifier": {
+                "objectReferenceIdentifier": {
                   "type": "string"
                 }
               },
               "required": [
                 "statementFingerprint",
                 "subjectFideId",
-                "subjectRawIdentifier",
+                "subjectReferenceIdentifier",
                 "predicateFideId",
-                "predicateRawIdentifier",
+                "predicateReferenceIdentifier",
                 "objectFideId",
-                "objectRawIdentifier"
+                "objectReferenceIdentifier"
               ]
             }
           },
@@ -210,7 +210,7 @@
         },
         "required": [
           "entityFideId",
-          "primaryRawIdentifier",
+          "primaryReferenceIdentifier",
           "aliases",
           "statements",
           "nextCursor"
@@ -233,21 +233,21 @@
           "fideId": {
             "type": "string"
           },
-          "rawIdentifier": {
+          "referenceIdentifier": {
             "type": "string"
           },
           "type": {
             "type": "string"
           },
-          "sourceType": {
+          "referenceType": {
             "type": "string"
           }
         },
         "required": [
           "fideId",
-          "rawIdentifier",
+          "referenceIdentifier",
           "type",
-          "sourceType"
+          "referenceType"
         ]
       },
       "GraphSearchResponse": {
@@ -280,181 +280,6 @@
         },
         "required": [
           "error"
-        ]
-      },
-      "GraphProcessedBatch": {
-        "type": "object",
-        "properties": {
-          "sourceKind": {
-            "type": "string",
-            "enum": [
-              "github",
-              "direct"
-            ]
-          },
-          "repoSlug": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "sha": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "urlPath": {
-            "type": "string"
-          },
-          "root": {
-            "type": "string"
-          },
-          "insertedBatch": {
-            "type": "boolean"
-          },
-          "statementCount": {
-            "type": "integer"
-          }
-        },
-        "required": [
-          "sourceKind",
-          "repoSlug",
-          "sha",
-          "urlPath",
-          "root",
-          "insertedBatch",
-          "statementCount"
-        ]
-      },
-      "GraphStatementsBroadcastResponse": {
-        "type": "object",
-        "properties": {
-          "ok": {
-            "type": "boolean"
-          },
-          "processed": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GraphProcessedBatch"
-            }
-          }
-        },
-        "required": [
-          "ok",
-          "processed"
-        ]
-      },
-      "GraphBroadcastError": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "error"
-        ]
-      },
-      "GraphBroadcastMetadata": {
-        "anyOf": [
-          {
-            "type": "object",
-            "properties": {
-              "kind": {
-                "type": "string",
-                "enum": [
-                  "github"
-                ],
-                "example": "github"
-              },
-              "repoSlug": {
-                "type": "string",
-                "example": "ChrisLally/fide-statements-template"
-              },
-              "repoId": {
-                "type": "string",
-                "example": "982559179"
-              },
-              "ownerId": {
-                "type": "string",
-                "example": "43071816"
-              },
-              "sha": {
-                "type": "string",
-                "example": "ba1e9392d8078f204388c0794c27f0e3490ec046"
-              },
-              "runId": {
-                "type": "string",
-                "example": "22072343211"
-              }
-            },
-            "required": [
-              "kind",
-              "repoSlug",
-              "repoId",
-              "ownerId",
-              "sha",
-              "runId"
-            ]
-          },
-          {
-            "type": "object",
-            "properties": {
-              "kind": {
-                "type": "string",
-                "enum": [
-                  "direct"
-                ],
-                "example": "direct"
-              }
-            },
-            "required": [
-              "kind"
-            ]
-          }
-        ]
-      },
-      "GraphBroadcastItem": {
-        "type": "object",
-        "properties": {
-          "urlPath": {
-            "type": "string"
-          },
-          "root": {
-            "type": "string"
-          },
-          "sha256": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "urlPath",
-          "root",
-          "sha256"
-        ]
-      },
-      "GraphStatementsBroadcastPayload": {
-        "type": "object",
-        "properties": {
-          "urlBase": {
-            "type": "string",
-            "example": "https://raw.githubusercontent.com/ChrisLally/fide-statements-template/ba1e9392d8078f204388c0794c27f0e3490ec046"
-          },
-          "metadata": {
-            "$ref": "#/components/schemas/GraphBroadcastMetadata"
-          },
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GraphBroadcastItem"
-            }
-          }
-        },
-        "required": [
-          "urlBase",
-          "metadata",
-          "items"
         ]
       },
       "WorkspaceHealthResponse": {
@@ -907,85 +732,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GraphSearchErrorResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/graph/v1/broadcast/statements": {
-      "post": {
-        "summary": "Statement Batches",
-        "description": "Accepts statement-batch broadcast payloads and ingests them into Fide Graph.",
-        "tags": [
-          "Graph"
-        ],
-        "security": [
-          {
-            "apiKeyAuth": []
-          },
-          {
-            "bearerAuth": []
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GraphStatementsBroadcastPayload"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Broadcast processed",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GraphStatementsBroadcastResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid broadcast payload",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GraphBroadcastError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GraphBroadcastError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GraphBroadcastError"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Broadcast processing failed",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GraphBroadcastError"
                 }
               }
             }

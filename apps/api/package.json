@@ -5,7 +5,7 @@
     "dev": "tsx watch src/index.ts",
     "dev:tunnel": "sh -c 'set -a; [ -f ../../.env ] && . ../../.env; [ -f ../../.env.local ] && . ../../.env.local; set +a; if [ -z \"$CLOUDFLARED_TUNNEL_TOKEN_API\" ]; then echo \"Missing CLOUDFLARED_TUNNEL_TOKEN_API\"; exit 1; fi; cloudflared tunnel run --token \"$CLOUDFLARED_TUNNEL_TOKEN_API\"'",
     "dev:cf": "pnpm exec wrangler dev",
-    "build": "cd ../.. && pnpm --filter @chris-test/fcp build && pnpm --filter @chris-test/db build && pnpm --filter @chris-test/graph build && pnpm --filter @chris-test/graph-ingest build && pnpm --filter api run build:local",
+    "build": "cd ../.. && pnpm --filter @chris-test/fcp build && pnpm --filter @chris-test/db build && pnpm --filter @chris-test/graph-db build && pnpm --filter @chris-test/graph build && pnpm --filter @chris-test/graph-ingest build && pnpm --filter api run build:local",
     "build:api:prod": "cd ../.. && pnpm build:api:prod",
     "build:local": "tsc",
     "openapi:export": "tsx scripts/export-openapi.ts",
@@ -16,6 +16,7 @@
   "dependencies": {
     "@chris-test/db": "workspace:*",
     "@chris-test/fcp": "*",
+    "@chris-test/graph-db": "workspace:*",
     "@chris-test/graph-ingest": "workspace:*",
     "@hono/node-server": "^1.19.9",
     "@hono/zod-openapi": "^0.18.4",

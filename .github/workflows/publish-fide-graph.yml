@@ -19,6 +19,6 @@ jobs:
     uses: ChrisLally/lally-workflows/.github/workflows/release-publish.yml@main
     with:
       tag_prefix: "fide-graph/v"
-      install_working_directory: "packages/graph/sdks/js"
-      package_dir: "packages/graph/sdks/js"
+      install_working_directory: "packages/graph/sdk/javascript"
+      package_dir: "packages/graph/sdk/javascript"
       deployment_environment: "Preview - fide-graph"

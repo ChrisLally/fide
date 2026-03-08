@@ -4,9 +4,8 @@ Fide Graph workspace.
 
 ## Structure
 
-- `openapi/`: API contract artifacts
 - `docs/`: graph docs
-- `sdks/js/`: JavaScript SDK package (`@chris-test/graph`)
+- `sdk/javascript/`: JavaScript SDK package (`@chris-test/graph`)
 
 ## SDK Release
 

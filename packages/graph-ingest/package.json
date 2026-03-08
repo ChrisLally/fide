@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@chris-test/db": "workspace:*",
-    "@chris-test/fcp": "*",
+    "@chris-test/fcp": "workspace:*",
     "@chris-test/graph": "workspace:*"
   },
   "devDependencies": {

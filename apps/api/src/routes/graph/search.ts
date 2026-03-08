@@ -1,4 +1,4 @@
-import { searchGraph } from '@chris-test/db';
+import { searchEntities } from '@chris-test/graph-db';
 import { createRoute, OpenAPIHono, z } from '@hono/zod-openapi';
 import { FIDE_ENTITY_TYPE_MAP } from '@chris-test/fcp';
 import { requireGraphReadAuth } from '../../middleware/auth.js';
@@ -32,9 +32,9 @@ const SearchQuerySchema = z.object({
 
 const SearchItemSchema = z.object({
   fideId: z.string(),
-  rawIdentifier: z.string(),
+  referenceIdentifier: z.string(),
   type: z.string(),
-  sourceType: z.string(),
+  referenceType: z.string(),
 }).openapi('GraphSearchItem');
 
 const SearchResponseSchema = z.object({
@@ -88,7 +88,7 @@ app.openapi(createRoute({
 }), async (c) => {
   try {
     const query = c.req.valid('query');
-    const result = await searchGraph(query);
+    const result = await searchEntities(query);
     return c.json(result, 200);
   } catch (error) {
     return c.json({ error: error instanceof Error ? error.message : 'Invalid query' }, 400);

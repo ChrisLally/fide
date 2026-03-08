@@ -1,0 +1,15 @@
+{
+  "title": "SDK",
+  "description": "Generated SDK reference",
+  "root": true,
+  "icon": "Box",
+  "pages": [
+    "index",
+    "--- Statement Batches ---",
+    "build-statements-with-root",
+    "build-canonical-statement-set",
+    "--- JSONL ---",
+    "parse-graph-statement-batch-jsonl",
+    "format-graph-statement-batch-jsonl"
+  ]
+}

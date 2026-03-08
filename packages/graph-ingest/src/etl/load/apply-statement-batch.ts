@@ -1,5 +1,5 @@
 import { ingestStatementBatch } from "@chris-test/db";
-import { parseStatementBatchJsonl } from "@chris-test/graph";
+import { parseGraphStatementBatchJsonl } from "@chris-test/graph";
 
 type ApplyStatementBatchParams = {
   expectedRoot: string;
@@ -28,7 +28,7 @@ type ApplyStatementBatchParams = {
  * @reportContext Successful loads return a compact operational summary used by CLI and report generation.
  */
 export async function applyStatementBatchForIngest(params: ApplyStatementBatchParams) {
-  const parsed = await parseStatementBatchJsonl(params.jsonl);
+  const parsed = await parseGraphStatementBatchJsonl(params.jsonl);
 
   if (parsed.root !== params.expectedRoot) {
     throw new Error(
